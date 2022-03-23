@@ -1,13 +1,27 @@
-- name: Network Getting Started First Playbook
-  connection: ansible.netcommon.network_cli
-  gather_facts: false
+---
+- name: Speedtest
   hosts: all
+
   tasks:
+    - name: Get Speedtest Script
+      get_url:
+        url: https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py
+        dest: /tmp/speedtest
+        force: yes
 
-    - name: Get config for VyOS devices
-      vyos.vyos.vyos_facts:
-        gather_subset: all
+    - name: Run Speedtest
+      command: python /tmp/speedtest --simple
+      register: output
+      changed_when: false
 
-    - name: Display the config
+    - name: Ping Speed
       debug:
-        msg: "The hostname is {{ ansible_net_hostname }} and the OS is {{ ansible_net_version }}"
+        msg: "{{ output.stdout_lines[0] }}"
+
+    - name: Download Speed
+      debug:
+        msg: "{{ output.stdout_lines[1] }}"
+
+    - name: Upload Speed
+      debug:
+        msg: "{{ output.stdout_lines[2] }}"
