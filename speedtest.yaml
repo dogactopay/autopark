@@ -1,6 +1,6 @@
 ---
 - name: Speedtest
-  hosts: all
+  hosts: 194.163.168.50
 
   tasks:
     - name: Get Speedtest Script
