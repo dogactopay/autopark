@@ -1,6 +1,6 @@
 ---
-- hosts: all
+- hosts: 194.163.168.50
   name: Creates directory
   file:
-    path: /src/www
+    path: /src/deneme
     state: directory
