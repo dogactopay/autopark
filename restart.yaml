@@ -1,7 +1,6 @@
 ---
 - hosts: all
-  become: true
-  become_user: root
-  tasks:
-          - name: Rebooting the cloud server/bare metal box
-            reboot:
+- name: Creates directory
+  file:
+    path: /src/www
+    state: directory
