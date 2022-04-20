@@ -1,4 +1,4 @@
-- hosts: {{ ip_address }}
+- hosts: 194.163.168.50
   become: true
   tasks:
   - name: Create a file
