@@ -1,1 +1,5 @@
-
+- hosts: {{ ip_address }}
+  become: true
+  tasks:
+  - name: Create a file
+    file: path=/home/admin/dogac.txt state=touch
